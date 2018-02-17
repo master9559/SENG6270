@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace _6270PersonalAttempt
 {
+    /// <summary>
+    /// Processing totals here..
+    /// </summary>
     class Order
     {
         public List<PhotoLineItem> lines;
