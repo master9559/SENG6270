@@ -8,6 +8,16 @@ namespace _6270PersonalAttempt
 {
     class DeliveryRateFee : Fee
     {
+        public DeliveryRateFee()
+        {
+
+        }
+
+        public DeliveryRateFee(List<PhotoLineItem> lines, DeliveryTypeChoices deliveryType, OrderType orderType) : base()
+        {
+            setFee(lines, deliveryType, orderType);
+        }
+
         public void setFee(List<PhotoLineItem> lines, DeliveryTypeChoices deliveryType, OrderType orderType)
         {
             if (deliveryType == DeliveryTypeChoices.nextDay)

@@ -30,6 +30,9 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.printTypeLbl = new System.Windows.Forms.Label();
+            this.printSzLbl = new System.Windows.Forms.Label();
+            this.delLbl = new System.Windows.Forms.Label();
             this.finishStandard = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.deliveryTypeStandard = new System.Windows.Forms.ComboBox();
@@ -39,14 +42,24 @@
             this.photoTypeStandard = new System.Windows.Forms.ComboBox();
             this.qtyStandard = new System.Windows.Forms.NumericUpDown();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.prSzLbl = new System.Windows.Forms.Label();
+            this.numLbl = new System.Windows.Forms.Label();
+            this.printtyLbl = new System.Windows.Forms.Label();
+            this.deliveryLbl = new System.Windows.Forms.Label();
+            this.printTypePiece = new System.Windows.Forms.ComboBox();
             this.clearOrder = new System.Windows.Forms.Button();
-            this.placeOrderByPiece = new System.Windows.Forms.Button();
             this.addLineButton = new System.Windows.Forms.Button();
             this.deliveryTypeByPrint = new System.Windows.Forms.ComboBox();
             this.qtyByPrint = new System.Windows.Forms.NumericUpDown();
             this.photoSizeByPrint = new System.Windows.Forms.ComboBox();
+            this.placeOrderByPiece = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.receiptLabel = new System.Windows.Forms.Label();
+            this.orderListView = new System.Windows.Forms.ListView();
+            this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Finish = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.rate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.quant = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qtyStandard)).BeginInit();
@@ -64,9 +77,13 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(438, 264);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.printTypeLbl);
+            this.tabPage1.Controls.Add(this.printSzLbl);
+            this.tabPage1.Controls.Add(this.delLbl);
             this.tabPage1.Controls.Add(this.finishStandard);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.deliveryTypeStandard);
@@ -82,6 +99,36 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "One Print Discount";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // printTypeLbl
+            // 
+            this.printTypeLbl.AutoSize = true;
+            this.printTypeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printTypeLbl.Location = new System.Drawing.Point(298, 19);
+            this.printTypeLbl.Name = "printTypeLbl";
+            this.printTypeLbl.Size = new System.Drawing.Size(79, 20);
+            this.printTypeLbl.TabIndex = 10;
+            this.printTypeLbl.Text = "Print Type";
+            // 
+            // printSzLbl
+            // 
+            this.printSzLbl.AutoSize = true;
+            this.printSzLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printSzLbl.Location = new System.Drawing.Point(30, 19);
+            this.printSzLbl.Name = "printSzLbl";
+            this.printSzLbl.Size = new System.Drawing.Size(76, 20);
+            this.printSzLbl.TabIndex = 9;
+            this.printSzLbl.Text = "Print Size";
+            // 
+            // delLbl
+            // 
+            this.delLbl.AutoSize = true;
+            this.delLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.delLbl.Location = new System.Drawing.Point(30, 104);
+            this.delLbl.Name = "delLbl";
+            this.delLbl.Size = new System.Drawing.Size(64, 20);
+            this.delLbl.TabIndex = 8;
+            this.delLbl.Text = "Delivery";
             // 
             // finishStandard
             // 
@@ -178,8 +225,12 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.prSzLbl);
+            this.tabPage2.Controls.Add(this.numLbl);
+            this.tabPage2.Controls.Add(this.printtyLbl);
+            this.tabPage2.Controls.Add(this.deliveryLbl);
+            this.tabPage2.Controls.Add(this.printTypePiece);
             this.tabPage2.Controls.Add(this.clearOrder);
-            this.tabPage2.Controls.Add(this.placeOrderByPiece);
             this.tabPage2.Controls.Add(this.addLineButton);
             this.tabPage2.Controls.Add(this.deliveryTypeByPrint);
             this.tabPage2.Controls.Add(this.qtyByPrint);
@@ -192,6 +243,57 @@
             this.tabPage2.Text = "Order By Print";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // prSzLbl
+            // 
+            this.prSzLbl.AutoSize = true;
+            this.prSzLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prSzLbl.Location = new System.Drawing.Point(35, 19);
+            this.prSzLbl.Name = "prSzLbl";
+            this.prSzLbl.Size = new System.Drawing.Size(76, 20);
+            this.prSzLbl.TabIndex = 12;
+            this.prSzLbl.Text = "Print Size";
+            // 
+            // numLbl
+            // 
+            this.numLbl.AutoSize = true;
+            this.numLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numLbl.Location = new System.Drawing.Point(185, 19);
+            this.numLbl.Name = "numLbl";
+            this.numLbl.Size = new System.Drawing.Size(68, 20);
+            this.numLbl.TabIndex = 11;
+            this.numLbl.Text = "Quantity";
+            // 
+            // printtyLbl
+            // 
+            this.printtyLbl.AutoSize = true;
+            this.printtyLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printtyLbl.Location = new System.Drawing.Point(311, 19);
+            this.printtyLbl.Name = "printtyLbl";
+            this.printtyLbl.Size = new System.Drawing.Size(79, 20);
+            this.printtyLbl.TabIndex = 10;
+            this.printtyLbl.Text = "Print Type";
+            // 
+            // deliveryLbl
+            // 
+            this.deliveryLbl.AutoSize = true;
+            this.deliveryLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deliveryLbl.Location = new System.Drawing.Point(189, 120);
+            this.deliveryLbl.Name = "deliveryLbl";
+            this.deliveryLbl.Size = new System.Drawing.Size(64, 20);
+            this.deliveryLbl.TabIndex = 9;
+            this.deliveryLbl.Text = "Delivery";
+            // 
+            // printTypePiece
+            // 
+            this.printTypePiece.FormattingEnabled = true;
+            this.printTypePiece.Items.AddRange(new object[] {
+            "Glossy",
+            "Matte"});
+            this.printTypePiece.Location = new System.Drawing.Point(287, 42);
+            this.printTypePiece.Name = "printTypePiece";
+            this.printTypePiece.Size = new System.Drawing.Size(121, 33);
+            this.printTypePiece.TabIndex = 8;
+            // 
             // clearOrder
             // 
             this.clearOrder.Location = new System.Drawing.Point(315, 120);
@@ -200,15 +302,7 @@
             this.clearOrder.TabIndex = 5;
             this.clearOrder.Text = "Clear Order";
             this.clearOrder.UseVisualStyleBackColor = true;
-            // 
-            // placeOrderByPiece
-            // 
-            this.placeOrderByPiece.Location = new System.Drawing.Point(170, 120);
-            this.placeOrderByPiece.Name = "placeOrderByPiece";
-            this.placeOrderByPiece.Size = new System.Drawing.Size(93, 64);
-            this.placeOrderByPiece.TabIndex = 4;
-            this.placeOrderByPiece.Text = "Place Order";
-            this.placeOrderByPiece.UseVisualStyleBackColor = true;
+            this.clearOrder.Click += new System.EventHandler(this.clearOrder_Click);
             // 
             // addLineButton
             // 
@@ -218,6 +312,7 @@
             this.addLineButton.TabIndex = 3;
             this.addLineButton.Text = "Add to Order";
             this.addLineButton.UseVisualStyleBackColor = true;
+            this.addLineButton.Click += new System.EventHandler(this.addLineButton_Click);
             // 
             // deliveryTypeByPrint
             // 
@@ -225,7 +320,7 @@
             this.deliveryTypeByPrint.Items.AddRange(new object[] {
             "One Hour",
             "Next Day"});
-            this.deliveryTypeByPrint.Location = new System.Drawing.Point(286, 42);
+            this.deliveryTypeByPrint.Location = new System.Drawing.Point(165, 143);
             this.deliveryTypeByPrint.Name = "deliveryTypeByPrint";
             this.deliveryTypeByPrint.Size = new System.Drawing.Size(121, 33);
             this.deliveryTypeByPrint.TabIndex = 2;
@@ -261,6 +356,16 @@
             this.photoSizeByPrint.Size = new System.Drawing.Size(121, 33);
             this.photoSizeByPrint.TabIndex = 0;
             // 
+            // placeOrderByPiece
+            // 
+            this.placeOrderByPiece.Location = new System.Drawing.Point(221, 595);
+            this.placeOrderByPiece.Name = "placeOrderByPiece";
+            this.placeOrderByPiece.Size = new System.Drawing.Size(93, 29);
+            this.placeOrderByPiece.TabIndex = 4;
+            this.placeOrderByPiece.Text = "Place Order";
+            this.placeOrderByPiece.UseVisualStyleBackColor = true;
+            this.placeOrderByPiece.Click += new System.EventHandler(this.placeOrderByPiece_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -282,11 +387,43 @@
             this.receiptLabel.Size = new System.Drawing.Size(0, 24);
             this.receiptLabel.TabIndex = 2;
             // 
+            // orderListView
+            // 
+            this.orderListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Type,
+            this.Finish,
+            this.rate,
+            this.quant});
+            this.orderListView.Location = new System.Drawing.Point(44, 373);
+            this.orderListView.Name = "orderListView";
+            this.orderListView.Size = new System.Drawing.Size(430, 212);
+            this.orderListView.TabIndex = 3;
+            this.orderListView.UseCompatibleStateImageBehavior = false;
+            this.orderListView.View = System.Windows.Forms.View.Details;
+            // 
+            // Type
+            // 
+            this.Type.Text = "Type";
+            // 
+            // Finish
+            // 
+            this.Finish.Text = "Finish";
+            // 
+            // rate
+            // 
+            this.rate.Text = "Rate";
+            // 
+            // quant
+            // 
+            this.quant.Text = "Quantity";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 636);
+            this.Controls.Add(this.orderListView);
+            this.Controls.Add(this.placeOrderByPiece);
             this.Controls.Add(this.receiptLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
@@ -297,6 +434,7 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qtyStandard)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qtyByPrint)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -324,6 +462,19 @@
         private System.Windows.Forms.Button addLineButton;
         private System.Windows.Forms.ComboBox finishStandard;
         private System.Windows.Forms.Label receiptLabel;
+        private System.Windows.Forms.ComboBox printTypePiece;
+        private System.Windows.Forms.Label delLbl;
+        private System.Windows.Forms.Label printSzLbl;
+        private System.Windows.Forms.Label printTypeLbl;
+        private System.Windows.Forms.Label deliveryLbl;
+        private System.Windows.Forms.Label printtyLbl;
+        private System.Windows.Forms.Label numLbl;
+        private System.Windows.Forms.Label prSzLbl;
+        private System.Windows.Forms.ListView orderListView;
+        private System.Windows.Forms.ColumnHeader Type;
+        private System.Windows.Forms.ColumnHeader Finish;
+        private System.Windows.Forms.ColumnHeader rate;
+        private System.Windows.Forms.ColumnHeader quant;
     }
 }
 

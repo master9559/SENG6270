@@ -19,6 +19,9 @@ namespace _6270PersonalAttempt
             this.photoType = photoType;
             this.quantity = quantity;
             this.finishType = finishType;
+
+            LineRatesStandard rate = new LineRatesStandard(this);
+            LineRate = rate.getLineRate();
         }
 
         public decimal LineRate
@@ -43,6 +46,11 @@ namespace _6270PersonalAttempt
         {
             get { return quantity; }
             set { quantity = value; }
+        }
+
+        public override string ToString()
+        {
+            return photoType + ",\t" + finishType + ",\t" + lineRate;
         }
 
     }

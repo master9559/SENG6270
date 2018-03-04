@@ -12,11 +12,15 @@ namespace _6270PersonalAttempt
 {
     public partial class Form1 : Form
     {
+        Order listorder = new Order();
+
         public Form1()
         {
             InitializeComponent();
             setOriginalSettings();
-           
+            orderListView.Visible = false;
+            placeOrderByPiece.Visible = false;
+            Height = 410;
         }
 
         private void setOriginalSettings()
@@ -26,6 +30,7 @@ namespace _6270PersonalAttempt
             photoSizeByPrint.SelectedIndex = 0;
             deliveryTypeByPrint.SelectedIndex = 1;
             finishStandard.SelectedIndex = 0;
+            printTypePiece.SelectedIndex = 0;
         }
         /// <summary>
         /// I tried to build it in a way that much could be
@@ -41,7 +46,7 @@ namespace _6270PersonalAttempt
             PhotoLineItem lineItem = new PhotoLineItem((PhotoTypeChoices)photoTypeStandard.SelectedIndex, (int)qtyStandard.Value,
                  (FinishTypeChoices)finishStandard.SelectedIndex);
             DeliveryTypeChoices deliveryChoice = (DeliveryTypeChoices)deliveryTypeStandard.SelectedIndex;
-            
+
             //Get Line Rate, discounts and fees
             LineRatesStandard rate = new LineRatesStandard(lineItem);
             lineItem.LineRate = rate.getLineRate();
@@ -56,15 +61,58 @@ namespace _6270PersonalAttempt
             Order order = new Order(lineItem, promoDiscount, deliveryFee);
 
             MessageBox.Show(Receipt.buildReceipt(order));
-            
-
-            
 
             //Calculate Total
 
 
-//            MessageBox.Show("BaseRate: " + rate.getBaseRate() + "\nDeliveryUpcharge: " + rate.getDeliveryRateUpcharge() +
-//                "\nFinishUpcarge: " + rate.getFinishTypeUpcharge());
+            //            MessageBox.Show("BaseRate: " + rate.getBaseRate() + "\nDeliveryUpcharge: " + rate.getDeliveryRateUpcharge() +
+            //                "\nFinishUpcarge: " + rate.getFinishTypeUpcharge());
+        }
+
+        private void placeOrderByPiece_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(listorder.GetReceipt());
+            //clear();
+        }
+
+        private void clearOrder_Click(object sender, EventArgs e)
+        {
+            clear();
+        }
+
+        private void clear()
+        {
+            listorder = new Order();
+            orderListView.Items.Clear();
+        }
+
+        private void addLineButton_Click(object sender, EventArgs e)
+        {
+            PhotoLineItem lineItem = new PhotoLineItem(
+                (PhotoTypeChoices)photoSizeByPrint.SelectedIndex,
+                (int)qtyByPrint.Value,
+                (FinishTypeChoices)printTypePiece.SelectedIndex);
+
+            //deliveryTypeByPrint
+            listorder.addLine(lineItem);
+
+            listorder.addFee((DeliveryTypeChoices)deliveryTypeByPrint.SelectedIndex, OrderType.byPiece);
+            
+            orderListView.Items.Add(new ListViewItem(new string[] {
+                lineItem.PhotoType.ToString(),
+                lineItem.FinishType.ToString(),
+                lineItem.LineRate.ToString(),
+                lineItem.Quantity.ToString()}));
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            bool vis = tabControl1.SelectedIndex == 1;
+
+            orderListView.Visible = vis;
+            placeOrderByPiece.Visible = vis;
+            Height = vis ? 675 : 410;
         }
     }
 }

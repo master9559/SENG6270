@@ -8,7 +8,7 @@ namespace _6270PersonalAttempt
 {
     class Order
     {
-        public List<PhotoLineItem> lines;
+        private List<PhotoLineItem> lines;
         private List<Discount> discounts;
         private List<Fee> fees;
         public Order()
@@ -64,6 +64,11 @@ namespace _6270PersonalAttempt
                 fees.Add(fee);
         }
 
+        public void addFee(DeliveryTypeChoices deliveryType, OrderType orderType)
+        {
+            addFee(new DeliveryRateFee(lines, deliveryType, orderType));
+        }
+
         public decimal getTotal()
         {
             decimal total = 0;
@@ -84,6 +89,10 @@ namespace _6270PersonalAttempt
             }
 
             return total;
+        }
+
+        public string GetReceipt() {
+            return Receipt.buildReceipt(this);
         }
     }
 }
