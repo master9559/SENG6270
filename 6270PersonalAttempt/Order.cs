@@ -74,28 +74,50 @@ namespace _6270PersonalAttempt
 
         public decimal getTotal()
         {
-            decimal total = 0;
-            foreach (var line in lines)
-            {
-                total += line.Quantity * line.LineRate;
-            }
-            foreach (var fee in fees)
-            {
-                total += fee.Amount;
-            }
-            if (total <= 35)
-            {
-                foreach (var discount in discounts)
-                {
-                    total += discount.getTotalDiscount();
-                }
-            }
+            decimal total = getLinesTotal();
+            total += getFees();
+            total -= getDiscounts(total);
+            
 
             return total;
         }
 
         public string GetReceipt() {
             return Receipt.buildReceipt(this);
+        }
+
+        private decimal getLinesTotal()
+        {
+            decimal total = 0;
+            foreach (var line in lines)
+            {
+                total += line.Quantity * line.LineRate;
+            }
+            return total;
+        }
+        private decimal getFees()
+        {
+            decimal total = 0;
+            foreach (var fee in fees)
+            {
+                total += fee.Amount;
+            }
+            return total;
+        }
+        private decimal getDiscounts(decimal currentTotal)
+        {
+            decimal total = 0;
+            if (currentTotal <= 35)
+            {
+                foreach (var discount in discounts)
+                {
+                    total += discount.getTotalDiscount();
+                }
+            } else
+            {
+                return currentTotal * .05M;
+            }
+            return total;
         }
     }
 }
