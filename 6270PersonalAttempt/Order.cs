@@ -71,12 +71,17 @@ namespace _6270PersonalAttempt
         {
             addFee(new DeliveryRateFee(lines, deliveryType, orderType));
         }
-
+        public decimal getCurrentTotal()
+        {
+            decimal total = getLinesTotal();
+            total += getFees();
+            return total;
+        }
         public decimal getTotal()
         {
             decimal total = getLinesTotal();
             total += getFees();
-            total -= getDiscounts(total);
+            total -= getDiscountTotal(total);
             
 
             return total;
@@ -104,20 +109,36 @@ namespace _6270PersonalAttempt
             }
             return total;
         }
-        private decimal getDiscounts(decimal currentTotal)
+        public decimal getDiscountTotal(decimal currentTotal)
         {
             decimal total = 0;
+            decimal otherDiscounts = getTotalDiscounts();
             if (currentTotal <= 35)
             {
-                foreach (var discount in discounts)
-                {
-                    total += discount.getTotalDiscount();
-                }
+                total += otherDiscounts;
             } else
             {
-                return currentTotal * .05M;
+                decimal orderSizeDiscount = currentTotal * .05M;
+                if (orderSizeDiscount > otherDiscounts)
+                {
+                    total += orderSizeDiscount;
+                } else
+                {
+                    total += otherDiscounts;
+                }
             }
             return total;
         }
+
+        private decimal getTotalDiscounts()
+        {
+            decimal total = 0M;
+            foreach (var discount in discounts)
+            {
+                total += discount.getTotalDiscount();
+            }
+            return total;
+
+        } 
     }
 }

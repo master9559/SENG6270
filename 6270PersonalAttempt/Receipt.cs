@@ -31,9 +31,9 @@ namespace _6270PersonalAttempt
 
             
 
-            foreach (Discount discount in order.Discount)
+           if (order.getDiscountTotal(order.getCurrentTotal()) > 0M)
             {
-                receiptText += "\n\tDiscounts\t-" + discount.getTotalDiscount();
+                receiptText += "\nDiscount: " + order.getDiscountTotal(order.getCurrentTotal());
             }
 
             receiptText += "\nOrder Total: " + order.getTotal();
