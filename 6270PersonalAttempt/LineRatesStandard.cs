@@ -32,7 +32,7 @@ namespace _6270PersonalAttempt
                     else amount = .28M;
                     break;
                 case PhotoTypeChoices.eightbyten:
-                    if (lineItem.Quantity < 50) amount = .68M;
+                    if (lineItem.Quantity <= 50) amount = .68M;
                     else if (lineItem.Quantity <= 75) amount = .64M;
                     else amount = .60M;
                     break;
