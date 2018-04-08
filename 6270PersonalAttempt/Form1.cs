@@ -78,12 +78,17 @@ namespace _6270PersonalAttempt
         private void clearOrder_Click(object sender, EventArgs e)
         {
             clear();
+            
         }
 
         private void clear()
         {
             listorder = new Order();
             orderListView.Items.Clear();
+            addLineButton.Enabled = true;
+            qtyByPrint.Maximum = 100;
+            qtyByPrint.Minimum = 1;
+            qtyByPrint.Value = 1;
         }
 
         private void addLineButton_Click(object sender, EventArgs e)
@@ -103,6 +108,12 @@ namespace _6270PersonalAttempt
                 lineItem.FinishType.ToString(),
                 lineItem.LineRate.ToString(),
                 lineItem.Quantity.ToString()}));
+
+            qtyByPrint.Maximum = 100 - listorder.getTotalQuantity();
+            if (qtyByPrint.Maximum <= 0)
+            {
+                addLineButton.Enabled = false;
+            }
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)

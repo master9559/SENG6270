@@ -13,7 +13,7 @@ namespace _6270PersonalAttempt
     {
         public void CalculateDiscount(PhotoLineItem lineItem, string promoCode)
         {
-            if (lineItem.Quantity == 100 && promoCode.Equals("N56M2"))
+            if (lineItem.Quantity == 100 && promoCode.ToUpper().Equals("N56M2"))
             {
                 amount = 2M;
             }

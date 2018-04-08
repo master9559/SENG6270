@@ -139,6 +139,16 @@ namespace _6270PersonalAttempt
             }
             return total;
 
-        } 
+        }
+        
+        public int getTotalQuantity()
+        {
+            int total = 0;
+            foreach (var line in this.lines)
+            {
+                total += line.Quantity;
+            }
+            return total;
+        }
     }
 }
