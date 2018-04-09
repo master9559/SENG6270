@@ -62,6 +62,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LineRate.cs" />
+    <Compile Include="LineRateByPiece.cs" />
     <Compile Include="PhotoLineItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="PromoDiscount.cs" />

@@ -44,7 +44,7 @@ namespace _6270PersonalAttempt.UnitTest
 
         private decimal getLineRate(PhotoTypeChoices photoType, int qty, FinishTypeChoices finish)
         {
-            return new LineRatesStandard(new PhotoLineItem(photoType, qty, finish)).getLineRate();
+            return new LineRatesStandard(new PhotoLineItem(photoType, qty, finish, OrderType.standard)).getLineRate();
         }
     }
 }

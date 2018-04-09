@@ -6,53 +6,48 @@ using System.Threading.Tasks;
 
 namespace _6270PersonalAttempt
 {
-    class LineRatesStandard : LineRate
+    class LineRateByPiece : LineRate
     {
-        public LineRatesStandard(PhotoLineItem lineItem) : base(lineItem)
+        public LineRateByPiece(PhotoLineItem lineItem) : base(lineItem)
         {
         }
 
         override
         public decimal getBaseRate()
         {
-            decimal amount = 0.14M;
+            decimal amount = 0.16M;
 
             switch (lineItem.PhotoType)
             {
                 case PhotoTypeChoices.fourbysix:
-                    if (lineItem.Quantity <= 50) amount = .14M;
-                    else if (lineItem.Quantity <= 75) amount = .12M;
-                    else amount = .10M;
+                    amount = .19M;
                     break;
                 case PhotoTypeChoices.fivebyseven:
-                    if (lineItem.Quantity <= 50) amount = .34M;
-                    else if (lineItem.Quantity <= 75) amount = .31M;
-                    else amount = .28M;
+                    amount = .39M;
                     break;
                 case PhotoTypeChoices.eightbyten:
-                    if (lineItem.Quantity <= 50) amount = .68M;
-                    else if (lineItem.Quantity <= 75) amount = .64M;
-                    else amount = .60M;
+                    amount = .79M;
                     break;
             }
             return amount;
         }
-        
+
         override
         public decimal getFinishTypeUpcharge()
         {
             decimal amount = 0M;
-            if (lineItem.FinishType == FinishTypeChoices.matte) {
+            if (lineItem.FinishType == FinishTypeChoices.matte)
+            {
                 switch (lineItem.PhotoType)
                 {
                     case PhotoTypeChoices.fourbysix:
-                        amount = .02M;
+                        amount = .04M;
                         break;
                     case PhotoTypeChoices.fivebyseven:
-                        amount = .03M;
+                        amount = .06M;
                         break;
                     case PhotoTypeChoices.eightbyten:
-                        amount = .04M;
+                        amount = .08M;
                         break;
 
                     default:
@@ -61,6 +56,7 @@ namespace _6270PersonalAttempt
             }
             return amount;
         }
+
 
     }
 }

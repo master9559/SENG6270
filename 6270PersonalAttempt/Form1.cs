@@ -43,8 +43,11 @@ namespace _6270PersonalAttempt
         private void placeOrderStandard_Click(object sender, EventArgs e)
         {
             //Get elements from form
-            PhotoLineItem lineItem = new PhotoLineItem((PhotoTypeChoices)photoTypeStandard.SelectedIndex, (int)qtyStandard.Value,
-                 (FinishTypeChoices)finishStandard.SelectedIndex);
+            PhotoLineItem lineItem = new PhotoLineItem(
+                (PhotoTypeChoices)photoTypeStandard.SelectedIndex, 
+                (int)qtyStandard.Value,
+                (FinishTypeChoices)finishStandard.SelectedIndex,
+                OrderType.byPiece);
             DeliveryTypeChoices deliveryChoice = (DeliveryTypeChoices)deliveryTypeStandard.SelectedIndex;
 
             //Get Line Rate, discounts and fees
@@ -96,7 +99,8 @@ namespace _6270PersonalAttempt
             PhotoLineItem lineItem = new PhotoLineItem(
                 (PhotoTypeChoices)photoSizeByPrint.SelectedIndex,
                 (int)qtyByPrint.Value,
-                (FinishTypeChoices)printTypePiece.SelectedIndex);
+                (FinishTypeChoices)printTypePiece.SelectedIndex,
+                OrderType.byPiece);
 
             //deliveryTypeByPrint
             listorder.addLine(lineItem);

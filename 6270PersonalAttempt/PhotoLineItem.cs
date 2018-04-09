@@ -14,13 +14,19 @@ namespace _6270PersonalAttempt
         private FinishTypeChoices finishType;
         private decimal lineRate = -1M;
 
-        public PhotoLineItem(PhotoTypeChoices photoType, int quantity, FinishTypeChoices finishType)
+        public PhotoLineItem(PhotoTypeChoices photoType, int quantity, FinishTypeChoices finishType, OrderType orderType)
         {
             this.photoType = photoType;
             this.quantity = quantity;
             this.finishType = finishType;
-
-            LineRatesStandard rate = new LineRatesStandard(this);
+            LineRate rate;
+            if (orderType == OrderType.standard)
+            {
+                rate = new LineRatesStandard(this);
+            } else
+            {
+                rate = new LineRateByPiece(this);
+            }
             LineRate = rate.getLineRate();
         }
 
