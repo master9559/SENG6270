@@ -17,6 +17,10 @@ namespace _6270PersonalAttempt
 
         public Fee()
         {
+
+
+
+
             this.amount = 0;
         }
 

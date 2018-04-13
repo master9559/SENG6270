@@ -74,6 +74,11 @@ namespace _6270PersonalAttempt
 
         private void placeOrderByPiece_Click(object sender, EventArgs e)
         {
+            //Add fee here first...
+            DeliveryRateFee deliveryFee = new DeliveryRateFee();
+            deliveryFee.setFee(listorder.Lines, (DeliveryTypeChoices)deliveryTypeByPrint.SelectedIndex, OrderType.byPiece);
+            listorder.addFee(deliveryFee);
+            
             MessageBox.Show(listorder.GetReceipt());
             //clear();
         }
@@ -104,8 +109,6 @@ namespace _6270PersonalAttempt
 
             //deliveryTypeByPrint
             listorder.addLine(lineItem);
-
-            listorder.addFee((DeliveryTypeChoices)deliveryTypeByPrint.SelectedIndex, OrderType.byPiece);
             
             orderListView.Items.Add(new ListViewItem(new string[] {
                 lineItem.PhotoType.ToString(),

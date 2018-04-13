@@ -42,6 +42,17 @@ namespace _6270PersonalAttempt.UnitTest
 
         }
 
+        [TestCase]
+        public void one_hour_processing_tests()
+        {
+            //Standard Order, all one size
+            PhotoLineItem lineItem = new PhotoLineItem(PhotoTypeChoices.fourbysix, 15, FinishTypeChoices.glossy, OrderType.standard);
+            LineRate lineRate = new LineRatesStandard(lineItem);
+            DeliveryRateFee deliveryFee = new DeliveryRateFee();
+            deliveryFee.setFee(new List<PhotoLineItem> { lineItem }, DeliveryTypeChoices.oneHour, OrderType.standard);
+            Assert.AreEqual(1, deliveryFee.Amount);
+        }
+
         private decimal getLineRate(PhotoTypeChoices photoType, int qty, FinishTypeChoices finish)
         {
             return new LineRatesStandard(new PhotoLineItem(photoType, qty, finish, OrderType.standard)).getLineRate();
