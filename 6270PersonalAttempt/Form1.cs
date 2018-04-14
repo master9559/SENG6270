@@ -80,7 +80,7 @@ namespace _6270PersonalAttempt
             listorder.addFee(deliveryFee);
             
             MessageBox.Show(listorder.GetReceipt());
-            //clear();
+            clear();
         }
 
         private void clearOrder_Click(object sender, EventArgs e)
