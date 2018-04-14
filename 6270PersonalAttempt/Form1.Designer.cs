@@ -369,12 +369,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(59, 30);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(51, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(401, 55);
+            this.label1.Size = new System.Drawing.Size(416, 42);
             this.label1.TabIndex = 1;
-            this.label1.Text = "6270 Photo Kiosk";
+            this.label1.Text = "Picture Buying Software";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // receiptLabel
@@ -428,7 +428,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Group 6 Photo Kiosk";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
